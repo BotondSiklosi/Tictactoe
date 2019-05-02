@@ -1,6 +1,5 @@
 import random
 
-MAP_SIZE = 3
 
 def draw_matrix():
     for i in range(MAP_SIZE):
@@ -10,8 +9,19 @@ def draw_matrix():
     print()
 
 def menu():
-    print("")
-    menu_number = int(input("give me a number: "))
+    print("1 : 1 player game!")
+    print("2 : 2 player game!")
+    print("3 : options")
+    print("4 : exit")
+    menu_number = int(input("select: "))
+    return menu_number
+
+
+def options():
+    set_map_size = int(input("Select map size: "))
+    set_win_amount = int(input("select win amount: "))
+    return set_map_size, set_win_amount
+
 
 def whoGoesFirst():
     if random.randint(0, 1) == 0:
@@ -31,12 +41,52 @@ def inputPlayerLetter():
     else:
         return ['O', 'X']
 
+def win_check():
+    number = 0
+    for i in range(MAP_SIZE):
+        for j in range(MAP_SIZE-WIN_AMOUNT):
+            if matrix[i][j] != 0:
+                for k in range(WIN_AMOUNT):
+                    if matrix[i][j] == matrix[i][j+k]:
+                        number += 1
+                        if number == WIN_AMOUNT:
+                            return number
+                    number = 0
+    number = 0
 
-def tie_check(board):
-    if matrix.any     
+    for i in range(MAP_SIZE):
+        for j in range(MAP_SIZE):
+            if matrix[i][j] != 0:
+                for k in range(WIN_AMOUNT):
+                    if matrix[i][j] == matrix[i-k][j]:
+                        number += 1
+                        if number == WIN_AMOUNT:
+                            return number
+                    number = 0
+    number = 0
 
+    for i in range(MAP_SIZE):
+        for j in range(MAP_SIZE):
+            if matrix[i][j] != 0:
+                for k in range(WIN_AMOUNT):
+                    if matrix[i][j] == matrix[i-k][j+k]:
+                        number += 1
+                        if number == WIN_AMOUNT:
+                            return number
+                    number = 0
+    number = 0
 
-def win_check(board, letter):
+    for i in range(MAP_SIZE):
+        for j in range(MAP_SIZE):
+            if matrix[i][j] != 0:
+                for k in range(WIN_AMOUNT):
+                    if matrix[i][j] == matrix[i-k][j-k]:
+                        number += 1
+                        if number == WIN_AMOUNT:
+                            return number
+                    number = 0
+    
+
 
 def turne(playerletter):
     if playerletter == "x":
@@ -50,6 +100,7 @@ def playermove():
     valt1 = int(valt[0])
     valt2 = int(valt[1])
     matrix[valt1][valt2] = playerletter
+    return valt1, valt2
 
 
 def change_turn(turn):
@@ -59,10 +110,29 @@ def change_turn(turn):
         return "player1"
 
 print("Welcome in tic tac toe! ")
-
-while True:
+starter = 0
+while starter == 0:
+    MAP_SIZE = 3
+    WIN_AMOUNT = 3
     while True:
-        menu()
+        select = 0
+        select = menu()
+        if select == 1:
+            print("Work in progress!")
+            continue
+        elif select == 2:
+            break
+        elif select == 3:
+            MAP_SIZE, WIN_AMOUNT = options()
+            continue
+        elif select == 4:
+            starter = 2
+            break
+
+        else:
+            print("invalid number!")
+            continue
+    print(starter)
     matrix = [["⬚" for x in range (MAP_SIZE)]for y in range (MAP_SIZE)]
     player1letter, player2letter = inputPlayerLetter()
     turn = whoGoesFirst()
@@ -72,9 +142,9 @@ while True:
     while True:
         playerletter = turne(playerletter)
         print ("player's "+ turn + " round! ")
-        playermove()
+        valt1, valt2 = playermove()
         win_check()
-        if win_check(matrix, playerletter) == True:
+        if win_check() == WIN_AMOUNT:
             print(turn,"won the game!! ")
             break
         elif tie_check() == True:
@@ -92,8 +162,3 @@ while True:
       
         
 print("thanks for the game!! :)")
-asdsdas
-async def asd
-as(parameter_list):
-    pass
-print(asd)
