@@ -9,6 +9,10 @@ def draw_matrix():
         print()
     print()
 
+def menu():
+    print("")
+    menu_number = int(input("give me a number: "))
+
 def whoGoesFirst():
     if random.randint(0, 1) == 0:
         return 'player1'
@@ -57,6 +61,8 @@ def change_turn(turn):
 print("Welcome in tic tac toe! ")
 
 while True:
+    while True:
+        menu()
     matrix = [["⬚" for x in range (MAP_SIZE)]for y in range (MAP_SIZE)]
     player1letter, player2letter = inputPlayerLetter()
     turn = whoGoesFirst()
@@ -86,3 +92,8 @@ while True:
       
         
 print("thanks for the game!! :)")
+asdsdas
+async def asd
+as(parameter_list):
+    pass
+print(asd)
