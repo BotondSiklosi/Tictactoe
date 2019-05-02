@@ -121,8 +121,8 @@ def change_turn(turn):
 
 print("Welcome in tic tac toe!")
 
-starter = 0
-while starter == 0:
+exitt = 0
+while True:
     MAP_SIZE = 3
     WIN_AMOUNT = 3
     
@@ -138,12 +138,13 @@ while starter == 0:
             MAP_SIZE, WIN_AMOUNT = options()
             continue
         elif select == 4:
-            starter = 2
+            exitt = 2
             break
         else:
             print("Invalid number!")
             continue
-
+    if exitt == 2:
+        break
     matrix = [["⬚" for x in range(MAP_SIZE)] for y in range(MAP_SIZE)]
     player1letter, player2letter = inputPlayerLetter()
     turn = whoGoesFirst()
